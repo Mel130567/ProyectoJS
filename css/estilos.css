@@ -1,7 +1,17 @@
 .home {
-  background-color: gray;
-  height: 100vh; }
+  background-image: url(../img/cross.jpg);
+  background-position: center;
+  height: 90vh; }
+
+.contenedorServicios {
+  height: 450px;
+  background-color: #ec4141; }
+  .contenedorServicios .card {
+    width: 300px;
+    height: 300px;
+    background-color: rgba(37, 37, 37, 0.884);
+    color: white; }
 
 .formularioDeTurnos {
-  background-color: #ecd8c7;
+  background-color: rgba(37, 37, 37, 0.884);
   height: 100vh; }
