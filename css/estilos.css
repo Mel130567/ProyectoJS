@@ -1,17 +1,53 @@
+@import url("https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Noto+Sans+HK:wght@400;700&display=swap");
+header {
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 700;
+  font-size: 15px;
+  text-shadow: 2px 2px 2px #0A0A0A; }
+  header .logo {
+    color: #ec4141;
+    font-size: 30px;
+    font-family: 'Bebas Neue', cursive;
+    text-decoration: none; }
+  header .menu {
+    margin: 0px auto; }
+    header .menu li {
+      height: 100%;
+      width: 100%;
+      padding: 0 20px; }
+  header .ingresar div {
+    padding: 0 10px; }
+
+body {
+  font-family: 'Noto Sans HK', sans-serif;
+  font-weight: 400; }
+
 .home {
   background-image: url(../img/cross.jpg);
   background-position: center;
   height: 90vh; }
 
-.contenedorServicios {
+#contenedorServicios {
   height: 450px;
   background-color: #ec4141; }
-  .contenedorServicios .card {
-    width: 300px;
-    height: 300px;
+  #contenedorServicios .card {
+    width: 350px;
+    height: 400px;
     background-color: rgba(37, 37, 37, 0.884);
     color: white; }
 
-.formularioDeTurnos {
+#formularioDeTurnos {
   background-color: rgba(37, 37, 37, 0.884);
   height: 100vh; }
+  #formularioDeTurnos .formulario {
+    background-color: #979797;
+    height: 80%;
+    width: 80%;
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
+    padding: 40px; }
+    #formularioDeTurnos .formulario .campo {
+      width: 50%;
+      margin: 10px 0px; }
+    #formularioDeTurnos .formulario button {
+      margin-top: 20px; }

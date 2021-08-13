@@ -1,0 +1,26 @@
+header{
+    font-family: 'Noto Sans HK', sans-serif;
+    font-weight: 700;
+    font-size: 15px;
+    text-shadow: 2px 2px 2px #0A0A0A;
+    .logo{
+        color: #ec4141;
+        font-size: 30px;
+        font-family:'Bebas Neue', cursive;
+        text-decoration: none;
+
+    }
+    .menu{
+        margin: 0px auto;
+        li{
+            height: 100%;
+            width: 100%;
+            padding: 0 20px;
+        }
+   }
+   .ingresar{
+       div{
+        padding: 0 10px;
+       }
+   }
+} 

@@ -10,56 +10,91 @@
 </head>
 <body>
     <div class="home">
-        <div class="menu">
+        <header class="container-fluid px-0">
             <nav class="navbar navbar-expand-lg navbar-light ">
-                <a class="navbar-brand" href="#">Navbar</a>
+                <a class="logo" href="Index.html">Crossfit Box</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                   <span class="navbar-toggler-icon"></span>
                 </button>
                 <div class="collapse navbar-collapse" id="navbarNav">
-                  <ul class="navbar-nav">
-                    <li class="nav-item active">
-                      <a class="nav-link" href="#">Home <span class="sr-only">(current)</span></a>
+                  <ul class="menu navbar-nav">
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="Index.html">Home</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Features</a>
+                      <a class="nav-link text-white" href="#contenedorServicios">Servicios</a>
                     </li>
                     <li class="nav-item">
-                      <a class="nav-link" href="#">Pricing</a>
-                    </li>
-                    <li class="nav-item">
-                      <a class="nav-link disabled" href="#">Disabled</a>
+                      <a class="nav-link text-white" href="#formularioDeTurnos">Clases</a>
                     </li>
                   </ul>
-                </div>
-              </nav>
+                  <div class="ingresar d-flex row">
+                    <div>
+                      <a class="text-white" href="#">Ingresar</a>
+                    </div>
+                    <div>
+                      <a class="text-white" href="#">Registrarse</a>
+                    </div>
+                  </div>
+            </nav>
+        </header>
+     </div>
+    <div id="contenedorServicios" class="row justify-content-around align-items-center">
+      <div class="card">
+        <img src="img/pullup.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nihil, cupiditate quisquam deleniti itaque repudiandae veritatis quasi minus.</p>
         </div>
+      </div>
+      <div class="card">
+        <img src="img/ket.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nihil, cupiditate quisquam deleniti itaque repudiandae veritatis quasi minus.</p>
+        </div>
+      </div>
+      <div class="card">
+        <img src="img/lunge.jpg" class="card-img-top" alt="...">
+        <div class="card-body">
+          <p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Illum nihil, cupiditate quisquam deleniti itaque repudiandae veritatis quasi minus.</p>
+        </div>
+      </div>
     </div>
-    <div class="contenedorServicios row justify-content-around align-items-center">
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-      <div class="card">
-        <img src="..." class="card-img-top" alt="...">
-        <div class="card-body">
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
-        </div>
-      </div>
-    </div>
-    <div class="formularioDeTurnos">
-      
+    <div id="formularioDeTurnos" class="d-flex flex-row justify-content-center align-items-center">
+      <form class="formulario d-flex flex-column justify-content-center" method="POST" autocomplete="off">
+          <input class="campo" type="text"  name="nombre" placeholder="Nombre">
+          <input class="campo" type="text" name="apellido" placeholder="Apellido">
+          <input class="campo" type="email"  name="email" placeholder="Email">
+          <input class="campo" type="tel"  name="telefono" placeholder="Telefono">
+          <label class="campo">Seleciona una clase</label>
+        <p>
+          <input type="radio" name="opcion">
+          <label>Crossfit</label>
+        </p>
+        <p>
+          <input type="radio" name="opcion">
+          <label>Funcional</label>
+        </p>
+        <label for="fecha">Fecha:</label>
+        <p>
+          <input class="campo" type="date" id="fecha" value="2021-09-22"min="2021-01-01" max="2022-01-01">
+        </p>
+        <label>Hora:</label>
+        <select class="campo" name="Horarios">
+          <option>10hs</option>
+          <option>12hs</option>
+          <option>14hs</option>
+          <option>16hs</option>
+          <option>18hs</option>
+          <option>20hs</option>
+        </select>
+        <p>
+          <button>Confirmar Turno</button>
+        </p>
+      </form>
     </div>
 
     <script src="js/jquery-3.5.1.slim.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
+    <script src="js/main.js"></script>
 </body>
 </html>

@@ -1,19 +1,40 @@
+@import "fonts";
+@import "header";
+body{
+    font-family: 'Noto Sans HK', sans-serif;
+    font-weight: 400;
+}
 .home{
     background-image: url(../img/cross.jpg);
     background-position: center;
     height: 90vh;
 }
-.contenedorServicios{
+#contenedorServicios{
     height: 450px;
     background-color: #ec4141;
     .card{
-        width: 300px;
-        height: 300px;
+        width: 350px;
+        height: 400px;
         background-color: rgba(37, 37, 37, 0.884);
         color:white;
     }
 }
-.formularioDeTurnos{
+#formularioDeTurnos{
     background-color: rgba(37, 37, 37, 0.884);
     height: 100vh;
+    .formulario{
+        background-color: #979797;
+        height: 80%;
+        width: 80%;
+        font-family:'Bebas Neue', cursive;
+        font-size: 20px;
+        padding: 40px;
+        .campo{
+            width: 50%;
+            margin: 10px 0px;
+        }
+        button{
+            margin-top: 20px;
+        }
+    }
 }
