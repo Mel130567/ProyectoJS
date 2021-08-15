@@ -19,7 +19,7 @@ class Turno{
     }
     reservar (opcion){
         if(opcion == "si"){
-            console.log(`Tu turno ha sido reservado con exito`);
+            console.log(` ${this.nombre} tu turno para la clase de ${this.clase} el día ${this.fecha} a las ${this.hora} ha sido reservado con exito! `);
         }else{
             console.log(`No has reservado un turno`);
         }
@@ -28,5 +28,5 @@ class Turno{
 
 const turno1 = new Turno ("Melanie", "Benedito", "Mel@mel.com", 111111, "crossfit", "01/09/2021", "10HS");
 
-console.table(turno1);
+turno1.reservar ("si");
 

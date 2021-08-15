@@ -28,26 +28,29 @@ body {
   height: 90vh; }
 
 #contenedorServicios {
-  height: 450px;
-  background-color: #ec4141; }
+  min-height: 60vh;
+  background-color: #ec4141;
+  box-sizing: content-box; }
   #contenedorServicios .card {
-    width: 350px;
-    height: 400px;
     background-color: rgba(37, 37, 37, 0.884);
-    color: white; }
+    color: white;
+    margin: 10px; }
+    #contenedorServicios .card img {
+      padding-top: 10px; }
 
 #formularioDeTurnos {
   background-color: rgba(37, 37, 37, 0.884);
-  height: 100vh; }
+  min-height: 100vh; }
   #formularioDeTurnos .formulario {
     background-color: #979797;
-    height: 80%;
-    width: 80%;
+    min-height: 80%;
+    width: 50%;
     font-family: 'Bebas Neue', cursive;
     font-size: 20px;
-    padding: 40px; }
+    padding: 40px;
+    box-sizing: content-box; }
     #formularioDeTurnos .formulario .campo {
-      width: 50%;
+      width: 100%;
       margin: 10px 0px; }
     #formularioDeTurnos .formulario button {
       margin-top: 20px; }
