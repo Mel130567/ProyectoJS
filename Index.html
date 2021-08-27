@@ -9,7 +9,7 @@
     <title>Proyecto JS</title>
 </head>
 <body>
-    <div class="home">
+    <div id="home">
         <header class="container fluid px-0">
             <nav class="navbar navbar-expand-lg navbar-light ">
                 <a class="logo" href="Index.html">Crossfit Box</a>
@@ -61,25 +61,27 @@
     </div>
     <div id="formularioDeTurnos" class="d-flex flex-row justify-content-center align-items-center">
       <form class="formulario d-flex flex-column justify-content-center" method="POST" autocomplete="off">
-          <input class="campo" type="text"  name="nombre" placeholder="Nombre">
-          <input class="campo" type="text" name="apellido" placeholder="Apellido">
-          <input class="campo" type="email"  name="email" placeholder="Email">
-          <input class="campo" type="tel"  name="telefono" placeholder="Telefono">
+          <input id="nombreForm" class="campo" type="text"  name="nombre" placeholder="Nombre" >
+          <input id="apellidoForm" class="campo" type="text" name="apellido" placeholder="Apellido" >
+          <input id="emailForm" class="campo" type="email"  name="email" placeholder="Email" >
+          <input id="telForm" class="campo" type="tel"  name="telefono" placeholder="Telefono">
           <label class="campo">Seleciona una clase</label>
         <p>
-          <input type="radio" name="opcion">
+          <input id="radioCross" type="radio" name="opcion" value="Crossfit">
           <label>Crossfit</label>
         </p>
         <p>
-          <input type="radio" name="opcion">
+          <input id="radioFun" type="radio" name="opcion" value="Funcional">
           <label>Funcional</label>
         </p>
         <label for="fecha">Fecha:</label>
         <p>
-          <input class="campo" type="date" id="fecha" value="2021-09-22"min="2021-01-01" max="2022-01-01">
+          <input id="fechaForm" class="campo" type="date" id="fecha">
         </p>
         <label>Hora:</label>
-        <select class="campo" name="Horarios">
+        <select id="horariosForm" class="campo" name="Horarios">
+          <option>-</option>
+          <option>8hs</option>
           <option>10hs</option>
           <option>12hs</option>
           <option>14hs</option>
@@ -88,11 +90,27 @@
           <option>20hs</option>
         </select>
         <p>
-          <button>Confirmar Turno</button>
+         <input id="btnConfirmar" type="submit" value="Confirmar Turno">
         </p>
       </form>
     </div>
-
+   <!-- Modal -->
+    <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+      <div class="modal-dialog modal-dialog-centered">
+        <div class="modal-content">
+          <div class="modal-header">
+            <p>Turno</p>
+            <button id="btnCerrarModal" type="button" class="close mx-0" data-dismiss="modal" aria-label="Close">
+              <span aria-hidden="true">&times;</span>
+            </button>
+          </div>
+          <div  id="modalBody" class="modal-body m-auto">
+          </div>
+          <div class="modal-footer">
+            <button type="button" class="btn btn-primary">Confirmar</button>
+        </div>
+      </div>
+    </div>
     <script src="js/jquery-3.5.1.slim.min.js"></script>
     <script src="js/bootstrap.bundle.min.js"></script>
     <script src="js/main.js"></script>

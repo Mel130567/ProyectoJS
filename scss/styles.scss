@@ -4,7 +4,7 @@ body{
     font-family: 'Noto Sans HK', sans-serif;
     font-weight: 400;
 }
-.home{
+#home{
     background-image: url(../img/cross.jpg);
     background-position: center;
     height: 90vh;
@@ -41,4 +41,7 @@ body{
             margin-top: 20px;
         }
     }
+}
+.campoError{
+    background-color: #ec4141;
 }
