@@ -26,12 +26,9 @@ const promociones = [
     }
 ]
 
-//funcion para crear el elemento que contendra las promos
+//funcion para crear el elemento que contendra las promos (con Jquery)
 function mostrarPromos(promociones){ 
-    let cardPromos = document.createElement("div");
-    cardPromos.classList.add("contenedorPromos")
-    cardPromos.innerHTML = `<h2>${promociones.titulo}</h2><p>${promociones.descripcion}</p>`;
-    document.body.appendChild(cardPromos);
+    let cardPromos = $("#contenedorServicios").append(`<div class="contenedorPromos"><h2>${promociones.titulo}</h2><p>${promociones.descripcion}</p></div>`)
 }
 //recorremos y creamos las promos con la funcion anterior
 for (const promos of promociones){
@@ -54,8 +51,7 @@ class Turno{
 
 //Traemos el boton "submit" del form y se declaran la funcion a ejecutar con el evento "click"
 
-let btnConfirmar = document.getElementById("btnConfirmar");
-btnConfirmar.addEventListener("click", recogerDatos);
+let btnConfirmar = $("#btnConfirmar").on("click", recogerDatos); // se modifico a un metodo de jquery
  
 //funcion que despliega un modal con los datos del turno
 function verModal(){
@@ -71,8 +67,9 @@ function verModal(){
     let contenidoModal = document.getElementById("modalBody");
     contenidoModal.appendChild(mensaje);
 
-    let btnCerrar = document.getElementById("btnCerrarModal").addEventListener("click", modalOff);
-    let confirmarModal = document.getElementById("confirmarModal").addEventListener("click", modalOff);
+    // se modifico a un metodo de jquery
+    let btnCerrar = $("#btnCerrarModal").click(modalOff);
+    let confirmarModal = $("#confirmarModal").click(modalOff);
     //funcion para cerrar el modal
     function modalOff(){ 
         modal.classList.remove("show")
