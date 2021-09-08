@@ -1,5 +1,7 @@
 @import "fonts";
 @import "header";
+@import "promos";
+
 body{
     font-family: 'Noto Sans HK', sans-serif;
     font-weight: 400;
@@ -42,6 +44,8 @@ body{
         }
     }
 }
-.campoError{
-    background-color: #ec4141;
+
+.error{
+    background-color: #f3d1d1;
+    border: 3px solid rgb(204, 115, 115);
 }

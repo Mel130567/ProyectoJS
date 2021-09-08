@@ -28,13 +28,6 @@
                       <a class="nav-link text-white" href="#formularioDeTurnos">Clases</a>
                     </li>
                   </ul>
-                  <div class="ingresar d-flex row">
-                    <div>
-                      <a class="text-white" href="#">Ingresar</a>
-                    </div>
-                    <div>
-                      <a class="text-white" href="#">Registrarse</a>
-                    </div>
                   </div>
             </nav>
         </header>
@@ -67,7 +60,7 @@
           <input id="telForm" class="campo" type="tel"  name="telefono" placeholder="Telefono">
           <label class="campo">Seleciona una clase</label>
         <p>
-          <input id="radioCross" type="radio" name="opcion" value="Crossfit">
+          <input id="radioCross" type="radio" name="opcion" value="Crossfit" checked>
           <label>Crossfit</label>
         </p>
         <p>
@@ -97,17 +90,17 @@
    <!-- Modal -->
     <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
       <div class="modal-dialog modal-dialog-centered">
-        <div class="modal-content">
-          <div class="modal-header">
-            <p>Turno</p>
+        <div class="modal-content bg-secondary">
+          <div class="modal-header text-white">
+            <p>Reserva de turno</p>
             <button id="btnCerrarModal" type="button" class="close mx-0" data-dismiss="modal" aria-label="Close">
               <span aria-hidden="true">&times;</span>
             </button>
           </div>
-          <div  id="modalBody" class="modal-body m-auto">
+          <div  id="modalBody" class="modal-body m-auto text-white">
           </div>
           <div class="modal-footer">
-            <button type="button" class="btn btn-primary">Confirmar</button>
+            <button type="button" id ="confirmarModal" class="btn btn-light">Confirmar</button>
         </div>
       </div>
     </div>

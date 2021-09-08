@@ -15,8 +15,15 @@ header {
       height: 100%;
       width: 100%;
       padding: 0 20px; }
-  header .ingresar div {
-    padding: 0 10px; }
+
+.contenedorPromos {
+  background-color: #ec4141;
+  text-align: center;
+  color: white;
+  font-family: 'Bebas Neue', cursive;
+  padding: 20px 0px; }
+  .contenedorPromos p {
+    margin: 0; }
 
 body {
   font-family: 'Noto Sans HK', sans-serif;
@@ -55,5 +62,6 @@ body {
     #formularioDeTurnos .formulario button {
       margin-top: 20px; }
 
-.campoError {
-  background-color: #ec4141; }
+.error {
+  background-color: #f3d1d1;
+  border: 3px solid #cc7373; }
