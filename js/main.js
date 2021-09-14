@@ -1,7 +1,6 @@
 
 /* El proceso principal del proyecto sera la simulacion de reserva de turnos mediante un form*/
 
-//se declara una estructura tipo "json" para incluir promociones
 const promociones = [
     {
         id: 1,
@@ -147,6 +146,14 @@ function recogerDatos(e){
     }
 }
 
+ //animaciones con jquery
+
+$(document).ready(() =>{
+    $("#home").append('<h3 class="animacion" style="display: none" >¡Entrena con nosotros!</h3>');
+    $("#home").append('<a class="animacion" href="#formularioDeTurnos"  style="display: none" >¡Reserva tu turno online!</a>');
+    $("h3").fadeIn(3000);
+    $("a").fadeIn(7000, ()=> $("h3").fadeOut(3000));
+} );
 
 
 
