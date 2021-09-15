@@ -1,0 +1,23 @@
+[
+    {
+        "id": 1,
+        "titulo": "Promo 2x1",
+        "descripcion": "¡Entrenan 2 y paga 1! Promo valida para el primer mes, para 2 socios nuevos o 1 socio activo y 1 nuevo" 
+    },
+
+    {
+        "id": 2,
+        "titulo": "Promo grupos",
+        "descripcion": "Aquellas personas que vengan a entrenar en grupos de 3 o + tendran un descuento adicional en el arancel" 
+    },
+    {
+        "id": 3,
+        "titulo": "Promo ahorro",
+        "descripcion": "¡Pagando 2 meses juntos entrenas 3 y pagando 3 meses juntoa entrenas 6!"
+    },
+    {
+        "id": 4,
+        "titulo": "Promo turno mañana",
+        "descripcion": "Aquellas personas que entrenen en los turnos de  7, 8, 9, y 10 am tendran un 20% de descuento en el arancel" 
+    }
+]

@@ -1,39 +1,6 @@
 
 /* El proceso principal del proyecto sera la simulacion de reserva de turnos mediante un form*/
 
-const promociones = [
-    {
-        id: 1,
-        titulo: "Promo 2x1",
-        descripcion: "¡Entrenan 2 y paga 1! Promo valida para el primer mes, para 2 socios nuevos o 1 socio activo y 1 nuevo" 
-    },
-
-    {
-        id: 2,
-        titulo: "Promo grupos",
-        descripcion: "Aquellas personas que vengan a entrenar en grupos de 3 o + tendran un descuento adicional en el arancel" 
-    },
-    {
-        id: 3,
-        titulo: "Promo ahorro",
-        descripcion: "¡Pagando 2 meses juntos entrenas 3 y pagando 3 meses juntoa entrenas 6!"
-    },
-    {
-        id: 4,
-        titulo: "Promo turno mañana",
-        descripcion: "Aquellas personas que entrenen en los turnos de  7, 8, 9, y 10 am tendran un 20% de descuento en el arancel" 
-    }
-]
-
-//funcion para crear el elemento que contendra las promos (con Jquery)
-function mostrarPromos(promociones){ 
-    let cardPromos = $("#contenedorServicios").append(`<div class="contenedorPromos"><h2>${promociones.titulo}</h2><p>${promociones.descripcion}</p></div>`)
-}
-//recorremos y creamos las promos con la funcion anterior
-for (const promos of promociones){
-    mostrarPromos(promos);
-}
-
 //Se declara el objeto "turno"
 
 class Turno{
@@ -154,6 +121,33 @@ $(document).ready(() =>{
     $("h3").fadeIn(3000);
     $("a").fadeIn(7000, ()=> $("h3").fadeOut(3000));
 } );
+
+//ajax con fetch
+
+const promos = "promos.json"
+
+function borrarBtn(){
+    document.getElementById("btnPromos").style.display = "none";
+}
+
+function mostrarPromos(promociones){
+    borrarBtn()
+    for (let i = 0; i < promociones.length; i++){
+        $("#contenedorPromos").prepend(`<div><h2>${promociones[i].titulo}</h2><p>${promociones[i].descripcion}</p></div>`)
+    }
+}
+
+function pedidoFetch(){
+    fetch(`${promos}`)
+    .then((res) => res.json())
+    .then((res) => mostrarPromos(res))
+    .catch((error) => console.log(error));
+}
+
+
+//  Aca no funciona el click (lo ejecuta antes de que se lleve a cabo el evento)
+
+// $("#btnPromos").click(pedidoFetch()) 
 
 
 

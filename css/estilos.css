@@ -16,13 +16,13 @@ header {
       width: 100%;
       padding: 0 20px; }
 
-.contenedorPromos {
+#contenedorPromos {
   background-color: #ec4141;
   text-align: center;
   color: white;
   font-family: 'Bebas Neue', cursive;
-  padding: 20px 10px; }
-  .contenedorPromos p {
+  padding: 30px 10px; }
+  #contenedorPromos p {
     margin: 0; }
 
 body {
