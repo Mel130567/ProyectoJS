@@ -68,6 +68,25 @@ body {
 
 .animacion {
   color: white;
-  text-decoration: none;
   font-size: 25px;
-  font-family: 'Bebas Neue', cursive; }
+  font-family: 'Bebas Neue', cursive;
+  text-align: center;
+  padding-top: 20px;
+  text-shadow: 2px 2px 2px #0A0A0A; }
+  .animacion a {
+    text-decoration: none;
+    color: white; }
+    .animacion a:hover {
+      color: #ec4141; }
+
+.tablaTurnos {
+  height: auto;
+  background-color: #ec4141;
+  text-align: center;
+  font-family: 'Bebas Neue', cursive;
+  padding: 20px; }
+  .tablaTurnos .turno {
+    background-color: #979797;
+    width: 250px;
+    height: 250px;
+    margin: 20px; }

@@ -33,6 +33,8 @@ function verModal(){
     let contenidoModal = document.getElementById("modalBody");
     contenidoModal.appendChild(mensaje);
 
+    console.log(mensaje);
+
     // se modifico a un metodo de jquery
     let btnCerrar = $("#btnCerrarModal").click(modalOff);
     let confirmarModal = $("#confirmarModal").click(modalOff);
@@ -107,6 +109,7 @@ function recogerDatos(e){
         localStorage.setItem("turno", turno1Json);
     
         verModal();
+        traerTurnos();
 
     }else{
         document.getElementById(error).classList.add("error")
@@ -116,8 +119,8 @@ function recogerDatos(e){
  //animaciones con jquery
 
 $(document).ready(() =>{
-    $("#home").append('<h3 class="animacion" style="display: none" >¡Entrena con nosotros!</h3>');
-    $("#home").append('<a class="animacion" href="#formularioDeTurnos"  style="display: none" >¡Reserva tu turno online!</a>');
+    $("#home").append('<div class="animacion"><h3 style="display: none" >¡Entrena con nosotros!</h3></div>');
+    $("#home").append('<div class="animacion"><a href="#formularioDeTurnos"  style="display: none" >¡Reserva tu turno online!</a></div>');
     $("h3").fadeIn(3000);
     $("a").fadeIn(7000, ()=> $("h3").fadeOut(3000));
 } );
@@ -144,11 +147,34 @@ function pedidoFetch(){
     .catch((error) => console.log(error));
 }
 
+// seccion para ver los turnos reservados 
 
-//  Aca no funciona el click (lo ejecuta antes de que se lleve a cabo el evento)
+function verTurnos(turno){
+    let contenido = `
+    <div class="card turno">
+        <div class="card-body">
+        <p class="card-text">${turno.nombre}</p>
+        <p class="card-text">${turno.clase}</p>
+        <p class="card-text">${turno.fecha}</p>
+        <p class="card-text">${turno.hora}</p>
+        </div>
+    </div>`
+    $("#turnosReservados").append(contenido);
+}
 
-// $("#btnPromos").click(pedidoFetch()) 
+function traerTurnos(){
+    if (localStorage.getItem("turno")){
+        let turno = JSON.parse(localStorage.getItem("turno"));
+        verTurnos(turno)
+    }else if(localStorage.getItem("turno") === null){
+        $("#turnosReservados").append('<h2>Aun no se reservaron turnos</h2>');
+    }
+}
 
+document.addEventListener("DOMContentLoaded", ()=>{
+    traerTurnos()
+}
+)
 
 
 
