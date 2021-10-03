@@ -21,7 +21,7 @@ let btnConfirmar = $("#btnConfirmar").on("click", recogerDatos); // se modifico 
  
 //funcion que despliega un modal con los datos del turno
 function verModal(){
-    let modal = document.getElementById("turnoModal");
+    let modal = $("#turnoModal");
     modal.classList.add("show");
     modal.style = ("display: block;")
 
@@ -35,9 +35,9 @@ function verModal(){
 
     console.log(mensaje);
 
-    // se modifico a un metodo de jquery
-    let btnCerrar = $("#btnCerrarModal").click(modalOff);
-    let confirmarModal = $("#confirmarModal").click(modalOff);
+
+    let btnCerrar = $("#btnCerrarModal").on("click", modalOff);
+    let confirmarModal = $("#confirmarModal").on("click", modalOff);
     //funcion para cerrar el modal
     function modalOff(){ 
         modal.classList.remove("show")
@@ -116,14 +116,6 @@ function recogerDatos(e){
     }
 }
 
- //animaciones con jquery
-
-$(document).ready(() =>{
-    $("#home").append('<div class="animacion"><h3 style="display: none" >¡Entrena con nosotros!</h3></div>');
-    $("#home").append('<div class="animacion"><a href="#formularioDeTurnos"  style="display: none" >¡Reserva tu turno online!</a></div>');
-    $("h3").fadeIn(3000);
-    $("a").fadeIn(7000, ()=> $("h3").fadeOut(3000));
-} );
 
 //ajax con fetch
 
@@ -140,6 +132,8 @@ function mostrarPromos(promociones){
     }
 }
 
+
+//el evento click en el boton de promos desencadena la siguiente funcion (se encuentra en el html)
 function pedidoFetch(){
     fetch(`${promos}`)
     .then((res) => res.json())
