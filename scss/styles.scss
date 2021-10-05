@@ -1,6 +1,5 @@
 @import "fonts";
 @import "header";
-@import "promos";
 
 body{
     font-family: 'Noto Sans HK', sans-serif;
@@ -24,6 +23,17 @@ body{
         }
     }
 }
+#contenedorPromos{
+    background-color:#ec4141;
+    text-align: center;
+    color: white;
+    font-family: 'Bebas Neue', cursive;
+    padding: 30px 10px;
+    p{
+        margin: 0;
+    }
+}
+
 #formularioDeTurnos{
     background-color: rgba(37, 37, 37, 0.884);
     min-height: 100vh;
@@ -44,7 +54,6 @@ body{
         }
     }
 }
-
 .error{
     background-color: #f3d1d1;
     border: 3px solid rgb(204, 115, 115);
@@ -52,7 +61,6 @@ body{
 .requerido{
     color: red;
 }
-
 .tablaTurnos{
     height: auto;
     background-color:#ec4141;
