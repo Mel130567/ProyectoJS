@@ -1,23 +1,9 @@
 
 /* El proceso principal del proyecto sera la simulacion de reserva de turnos mediante un form*/
 
-//Se declara el objeto "turno"
-
-class Turno{
-    constructor(nombre, apellido, email, tel, clase, fecha, hora){
-        this.nombre = nombre;
-        this.apellido = apellido;
-        this.email = email;
-        this.tel = tel;
-        this.clase = clase;
-        this.fecha = fecha;
-        this.hora = hora;
-    }
-}
 
 //Se declaran las variables globales a utilizar
-
-let formulario = document.getElementById("formularioDeTurnos");
+let formulario = document.getElementById("frmTurnos");
 let inputs = document.querySelectorAll("#formularioDeTurnos .campo");
 let validaNombre = false;
 let validaApellido = false;
@@ -28,11 +14,9 @@ let validaHora = false;
 
 //Esta funcion se utiliza para no permitir que el usuario pueda acceder al boton "submit" del form sin completar validamente los campos requeridos
 function mostrarBoton(){    
-    if(validaNombre && validaApellido && validaEmail && validaTelefono && validaFecha && validaHora){
-        console.log("false")
+    if(validaNombre && validaApellido && validaEmail && validaTelefono && validaFecha && validaHora){        
         document.getElementById("btnConfirmar").disabled = false;
     }else{
-        console.log("verdadero")
         document.getElementById("btnConfirmar").disabled = true;
     }
     
@@ -139,38 +123,39 @@ function fechaActual(){
 
 document.addEventListener("DOMContentLoaded", fechaActual);
 
-//funcion que despliega un modal con los datos del turno
+//funcion que despliega un modal con los datos del turno el modal es de bootstrap y se encuentra en el html
 function verModal(){
+    let datosUsuario = JSON.parse(localStorage.getItem("turno"));
     let modal = document.getElementById("turnoModal");
     modal.classList.add("show");
     modal.style = ("display: block;")
 
-    let datosUsuario = JSON.parse(localStorage.getItem("turno"));
 
-    let mensaje = document.createElement("p");
-    mensaje.innerHTML = `<p>${datosUsuario.nombre} tu turno para la clase de ${datosUsuario.clase} el día ${datosUsuario.fecha} a las 
-    ${datosUsuario.hora} ha sido reservado con exito</p>`;
     let contenidoModal = document.getElementById("modalBody");
-    contenidoModal.appendChild(mensaje);
+    let mensaje = document.createElement("p");
+    mensaje.innerHTML = `<p>${datosUsuario[datosUsuario.length - 1].nombre} tu turno para la clase de ${datosUsuario[datosUsuario.length - 1].clase} el día ${datosUsuario[datosUsuario.length - 1].fecha} a las 
+    ${datosUsuario[datosUsuario.length - 1].hora} ha sido reservado con exito</p>`;    
+    
+    contenidoModal.appendChild(mensaje);    
 
-    console.log(mensaje);
-
-
-    let btnCerrar = document.getElementById("btnCerrarModal").addEventListener("click", modalOff);
-    let confirmarModal = document.getElementById("confirmarModal").addEventListener("click", modalOff);
+    document.getElementById("btnCerrarModal").addEventListener("click", modalOff);
+    document.getElementById("confirmarModal").addEventListener("click", modalOff);
+    
     //funcion para cerrar el modal
     function modalOff(){ 
         modal.classList.remove("show")
         modal.style = ("display: none;")
-        contenidoModal.removeChild(mensaje)
-    }
+        contenidoModal.removeChild(mensaje)        
+        traerTurnos()
+        formulario.reset();
+    }    
 }
 
 
-//funcion principal del proceso, la misma recoge los datos del turno reservado y los guarda en el local storage mientras que lanza el modal con datos del turno
+//funcion principal del proceso, la misma recoge los datos del turno reservado y los guarda en el local storage mientras que lanza el modal con los datos del turno
 formulario.addEventListener("submit", recogerDatos);
 
-function recogerDatos(e){
+function recogerDatos(e){    
     e.preventDefault();
     let nombre = document.getElementById("nombreForm").value;
     let apellido = document.getElementById("apellidoForm").value;
@@ -185,17 +170,35 @@ function recogerDatos(e){
     let fecha = document.getElementById("fechaForm").value;
     let hora = document.getElementById("horariosForm").value; 
 
-    const turno1 = new Turno (`${nombre}`, `${apellido}`, `${email}`, `${tel}`, `${clase}`, `${fecha}`, `${hora}`);
-    const turno1Json = JSON.stringify(turno1);
+    class AgregarDatos{
+        constructor(nombre, apellido, email, tel, clase, fecha, hora){
+            this.nombre = nombre;
+            this.apellido = apellido;
+            this.email = email;
+            this.tel = tel;
+            this.clase = clase;
+            this.fecha = fecha;
+            this.hora = hora;
+        }
+    }    
+    //busca si existen turnos, sino lo crea
+    if (localStorage.getItem("turno") === null) {
+        let baseDeDatos = [];        
 
-    localStorage.setItem("turno", turno1Json);
+        baseDeDatos.push(new AgregarDatos(`${nombre}`, `${apellido}`, `${email}`, `${tel}`, `${clase}`, `${fecha}`, `${hora}`));        
+        localStorage.setItem("turno", JSON.stringify(baseDeDatos));
+    } else {        
+        let datosAlmacenados = JSON.parse(localStorage.getItem("turno"));    
+
+        datosAlmacenados.push(new AgregarDatos(`${nombre}`, `${apellido}`, `${email}`, `${tel}`, `${clase}`, `${fecha}`, `${hora}`));                
+        localStorage.setItem("turno", JSON.stringify(datosAlmacenados)); 
+    }
 
     verModal();
 
 }
 
-//ajax con fetch para mostrar promos
-
+//seccion que muestra las promos que se encuentran en un json
 const promos = "promos.json"
 
 //el evento click en el boton de promos desencadena la siguiente funcion ("onclick" se encuentra en el html)
@@ -211,44 +214,66 @@ function borrarBtn(){
 }
 
 function mostrarPromos(promociones){
-    console.log(promociones);
     borrarBtn()
     for (let i = 0; i < promociones.length; i++){
         $("#contenedorPromos").prepend(`<div><h2>${promociones[i].titulo}</h2><p>${promociones[i].descripcion}</p></div>`)
     }
 }
 
-// seccion para ver los turnos reservados 
+// seccion para ver los turnos reservados y borrarlos
 
-function verTurnos(turno){
-    let contenido = `
-    <div class="card turno">
-        <div class="card-body">
-        <p class="card-text">${turno.nombre}</p>
-        <p class="card-text">${turno.clase}</p>
-        <p class="card-text">${turno.fecha}</p>
-        <p class="card-text">${turno.hora}</p>
-        </div>
-    </div>`
-    $("#turnosReservados").append(contenido);
+let contenidoTurno = document.getElementById("turnosReservados");    
+let bloqueTurno = document.createElement("div");
+
+function traerTurnos(){      
+    bloqueTurno.innerHTML = ""    
+    if (localStorage.getItem("turno")){                                
+        let turno = JSON.parse(localStorage.getItem("turno"));
+        let i = -1;        
+
+        turno.forEach(e => {
+            i++;
+            verTurnos(e)
+        })        
+
+        function verTurnos(e){                        
+            bloqueTurno.innerHTML += `
+            <div class="card turno">
+                <div class="card-body">
+                    <p class="card-text">${e.nombre}</p>
+                    <p class="card-text">${e.clase}</p>
+                    <p class="card-text">${e.fecha}</p>
+                    <p class="card-text">${e.hora}</p>
+                    <button class="btnColor" id="btnEliminarTurno${i}" onclick="borrarTurno(${i})">Eliminar turno</button>
+                </div>
+            </div>`
+            contenidoTurno.appendChild(bloqueTurno);      
+        }
+    }else{                
+        bloqueTurno.innerHTML = "<h2>Aun no se reservaron turnos</h2>"        
+        contenidoTurno.appendChild(bloqueTurno);
+    }
 }
 
-function traerTurnos(){
-    if (localStorage.getItem("turno")){
-        let turno = JSON.parse(localStorage.getItem("turno"));
-        verTurnos(turno)
-    }else if(localStorage.getItem("turno") === null){
-        $("#turnosReservados").append('<h2>Aun no se reservaron turnos</h2>');
+//esta funcion se dispara con el evento onclik en el boton creado en la funcion anterior
+function borrarTurno(i){
+    let datosAlmacenados = JSON.parse(localStorage.getItem("turno"));
+    datosAlmacenados.splice(i, 1);
+    localStorage.setItem("turno", JSON.stringify(datosAlmacenados));
+    if (datosAlmacenados.length === 0) {
+        localStorage.clear();
     }
+    traerTurnos()
 }
 
 document.addEventListener("DOMContentLoaded", traerTurnos)
 
-// generador de workouts
+// generador de workouts 
 let wod = "wods.json"
 let contenidoWod = document.getElementById("entrenamientos");
 let mensajeWod = document.createElement("div");
 
+//se traen los wods que estan guardados en un json
 function pedidoWod(){
     mensajeWod.innerHTML = ""
     fetch(`${wod}`)
@@ -256,9 +281,8 @@ function pedidoWod(){
     .then((wod) => mostrarWod(wod))
     .catch((error) => console.log(error));
 }
-
+//funcion que trae del json el titulo y descripcion de los wod de forma aleatoria al tocar el boton
 function mostrarWod(wod){    
-    
     let ordenWod = generateRandomInt(4)
 
     mensajeWod.innerHTML = (`<h2>${wod[ordenWod].titulo}</h2>`)
@@ -278,7 +302,3 @@ function generateRandomInt(max){
 document.addEventListener("DOMContentLoaded", pedidoWod)
 
 document.getElementById("btnWods").addEventListener("click", pedidoWod);
-
-
-
-

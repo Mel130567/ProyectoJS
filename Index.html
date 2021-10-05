@@ -56,10 +56,10 @@
       </div>
     </div>
     <div id="contenedorPromos">
-      <input type="button" id="btnPromos" value="Ver Promos" onclick="pedidoFetch()">
+      <input type="button" id="btnPromos" class="btnColor" value="Ver Promos" onclick="pedidoFetch()">
     </div>
     <div id="formularioDeTurnos" class="d-flex flex-row justify-content-center align-items-center">
-      <form class="formulario d-flex flex-column justify-content-center" method="POST" autocomplete="off">
+      <form id="frmTurnos" class="formulario d-flex flex-column justify-content-center" method="GET" autocomplete="off">
         <label for="nombreForm">Nombre <span class="requerido">*</span></label>
           <input id="nombreForm" class="campo" type="text"  name="nombre" placeholder="Nombre" >
           <label for="apellidoForm">Apellido <span class="requerido">*</span></label>
@@ -84,13 +84,13 @@
         <label>Hora <span class="requerido">*</span></label>
         <select id="horariosForm" class="campo" name="horarios">
           <option value="0">-</option>
-          <option value="1">8hs</option>
-          <option value="2">10hs</option>
-          <option value="3">12hs</option>
-          <option value="4">14hs</option>
-          <option value="5">16hs</option>
-          <option value="6">18hs</option>
-          <option value="7">20hs</option>
+          <option value="8hs">8hs</option>
+          <option value="10hs">10hs</option>
+          <option value="12hs">12hs</option>
+          <option value="14hs">14hs</option>
+          <option value="16hs">16hs</option>
+          <option value="18hs">18hs</option>
+          <option value="20hs">20hs</option>
         </select>
         <p>
          <input id="btnConfirmar" type="submit" value="Confirmar Turno" disabled>
@@ -105,7 +105,7 @@
     <div id="workouts">
       <h3>¡Genera tu workout!</h3>
       <div id="entrenamientos"></div>
-      <button id="btnWods">Conocer Wods</button>
+      <button id="btnWods" class="btnColor">Conocer Wods</button>
     </div>
    <!-- Modal -->
     <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

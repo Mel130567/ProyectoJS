@@ -24,11 +24,6 @@ header {
   padding: 30px 10px; }
   #contenedorPromos p {
     margin: 0; }
-  #contenedorPromos #btnPromos {
-    transition: all 500ms ease-in-out; }
-    #contenedorPromos #btnPromos:hover {
-      background-color: black;
-      color: white; }
 
 body {
   font-family: 'Noto Sans HK', sans-serif;
@@ -85,7 +80,8 @@ body {
     background-color: rgba(37, 37, 37, 0.884);
     width: 250px;
     height: 250px;
-    margin: 20px; }
+    margin: 20px;
+    display: inline-block; }
 
 #workouts {
   background-image: url(../img/fondo2.jpg);
@@ -99,13 +95,15 @@ body {
     font-size: 35px;
     text-shadow: 3px 3px 3px #979797; }
   #workouts #btnWods {
-    margin-bottom: 20px;
-    transition: all 500ms ease-in-out; }
-    #workouts #btnWods:hover {
-      background-color: black;
-      color: white; }
+    margin-bottom: 20px; }
   #workouts #entrenamientos {
     min-height: 250px; }
     #workouts #entrenamientos p {
       font-family: 'Noto Sans HK', sans-serif;
       text-shadow: 3px 3px 3px #161616; }
+
+.btnColor {
+  transition: all 500ms ease-in-out; }
+  .btnColor:hover {
+    background-color: black;
+    color: white; }
