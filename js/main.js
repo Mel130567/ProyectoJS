@@ -15,13 +15,133 @@ class Turno{
     }
 }
 
-//Traemos el boton "submit" del form y se declaran la funcion a ejecutar con el evento "click"
+//Se declaran las variables globales a utilizar
 
-let btnConfirmar = $("#btnConfirmar").on("click", recogerDatos); // se modifico a un metodo de jquery
- 
+let formulario = document.getElementById("formularioDeTurnos");
+let inputs = document.querySelectorAll("#formularioDeTurnos .campo");
+let validaNombre = false;
+let validaApellido = false;
+let validaEmail = false;
+let validaTelefono = false;
+let validaFecha = false;
+let validaHora = false;
+
+//Esta funcion se utiliza para no permitir que el usuario pueda acceder al boton "submit" del form sin completar validamente los campos requeridos
+function mostrarBoton(){    
+    if(validaNombre && validaApellido && validaEmail && validaTelefono && validaFecha && validaHora){
+        console.log("false")
+        document.getElementById("btnConfirmar").disabled = false;
+    }else{
+        console.log("verdadero")
+        document.getElementById("btnConfirmar").disabled = true;
+    }
+    
+}
+
+//foreach para que se ejecute en cada input de class "campo" la funcion de validacion.
+
+inputs.forEach(verInputs)
+
+function verInputs(input){
+    input.addEventListener("keyup", validarForm);
+    input.addEventListener("blur", validarForm);        
+}
+
+
+//exp regulares para validar form
+function validarForm(e){
+    switch (e.target.name) {
+        case "nombre":
+        case "apellido":
+            if((/^[a-zA-ZÀ-ÿ\s]{1,40}$/).test(e.target.value)){
+                e.target.classList.remove("error");
+                validaNombre = true;                
+                validaApellido = true;
+                mostrarBoton()
+            }else{
+                e.target.classList.add("error");
+                validaNombre = false;
+                validaApellido = false;
+                mostrarBoton()
+            }
+        break;
+        case "email":
+            if((/^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/).test(e.target.value)){
+                e.target.classList.remove("error");
+                validaEmail = true;
+                mostrarBoton()
+            }else{
+                e.target.classList.add("error");
+                validaEmail = false;
+                mostrarBoton()
+            }
+        break;
+        case "telefono":
+            if((/^\d{7,14}$/).test(e.target.value)){
+                e.target.classList.remove("error");
+                validaTelefono = true;
+                mostrarBoton()
+            }else{
+                e.target.classList.add("error");
+                validaTelefono = false;
+                mostrarBoton()
+            }
+        break;
+        case "fecha":
+            let fechas = document.getElementById("fechaForm");
+            if(e.target.value !== ""){
+                fechas.classList.remove("error");
+                validaFecha = true;
+                mostrarBoton()
+            }else{
+                fechas.classList.add("error");                
+                validaFecha = false;
+                mostrarBoton()
+            }
+        break;
+        case "horarios":
+            let horas = document.getElementById("horariosForm");
+            if(e.target.value !== "0"){
+                horas.classList.remove("error");
+                validaHora = true;
+                mostrarBoton()
+            }else{                                
+                validaHora = false;
+                mostrarBoton()
+            }
+        break;        
+    }
+}
+
+//esta funcion no permite que el usuario pueda seleccionar un día anterior a la fecha actual para reservar turno.
+function fechaActual(){
+    let fecha = new Date();
+    let dia;
+    let mes;
+    let anio = fecha.getFullYear();
+    let _dia = fecha.getDate();
+    let _mes = fecha.getMonth();
+    _mes = _mes + 1;
+
+    if (_mes < 10){ 
+        mes = "0" + _mes;
+    }else{ 
+        mes = _mes;
+    }
+
+    if (_dia < 10){ 
+        dia = "0" + _dia;
+    }else{ 
+        dia = _dia;
+    }
+    document.getElementById("fechaForm").min = anio+'-'+mes+'-'+dia;
+}
+
+document.addEventListener("DOMContentLoaded", fechaActual);
+
 //funcion que despliega un modal con los datos del turno
 function verModal(){
-    let modal = $("#turnoModal");
+    let modal = document.getElementById("turnoModal");
     modal.classList.add("show");
     modal.style = ("display: block;")
 
@@ -36,8 +156,8 @@ function verModal(){
     console.log(mensaje);
 
 
-    let btnCerrar = $("#btnCerrarModal").on("click", modalOff);
-    let confirmarModal = $("#confirmarModal").on("click", modalOff);
+    let btnCerrar = document.getElementById("btnCerrarModal").addEventListener("click", modalOff);
+    let confirmarModal = document.getElementById("confirmarModal").addEventListener("click", modalOff);
     //funcion para cerrar el modal
     function modalOff(){ 
         modal.classList.remove("show")
@@ -46,38 +166,10 @@ function verModal(){
     }
 }
 
-let error;
 
-// funcion para validar que los campos del form no se encuentren vacios
-function validarCampos(nombre, apellido, email, tel, fecha, hora){
-    if (nombre === "") {
-        error = "nombreForm"
-        return false;
-    } else if(apellido === ""){
-        error = "apellidoForm"
-        return false;
-    } else if(email === ""){
-        error = "emailForm"
-        return false;
-    } else if(tel === ""){
-        error = "telForm"
-        return false;
-    } else if(fecha === ""){
-        error = "fechaForm"
-        return false;
-    } else if(hora == "-"){
-        error = "horariosForm"
-        return false;
-    } else{
-        return true;
-    }
-}
+//funcion principal del proceso, la misma recoge los datos del turno reservado y los guarda en el local storage mientras que lanza el modal con datos del turno
+formulario.addEventListener("submit", recogerDatos);
 
-function quitarClase(campoError){
-    document.getElementById(campoError).classList.remove("error")
-}
-
-//funcion principal del proceso, se ejecuta con el evento "click" sobre el boton submit del form
 function recogerDatos(e){
     e.preventDefault();
     let nombre = document.getElementById("nombreForm").value;
@@ -92,53 +184,38 @@ function recogerDatos(e){
     } 
     let fecha = document.getElementById("fechaForm").value;
     let hora = document.getElementById("horariosForm").value; 
-    
-    const validar = validarCampos(nombre, apellido, email, tel, fecha, hora)
 
-    if(validar == true){
-        quitarClase("nombreForm");
-        quitarClase("apellidoForm");
-        quitarClase("emailForm");
-        quitarClase("telForm");
-        quitarClase("fechaForm");
-        quitarClase("horariosForm");
+    const turno1 = new Turno (`${nombre}`, `${apellido}`, `${email}`, `${tel}`, `${clase}`, `${fecha}`, `${hora}`);
+    const turno1Json = JSON.stringify(turno1);
 
-        const turno1 = new Turno (`${nombre}`, `${apellido}`, `${email}`, `${tel}`, `${clase}`, `${fecha}`, `${hora}`);
-        const turno1Json = JSON.stringify(turno1);
-    
-        localStorage.setItem("turno", turno1Json);
-    
-        verModal();
-        traerTurnos();
+    localStorage.setItem("turno", turno1Json);
 
-    }else{
-        document.getElementById(error).classList.add("error")
-    }
+    verModal();
+
 }
 
-
-//ajax con fetch
+//ajax con fetch para mostrar promos
 
 const promos = "promos.json"
+
+//el evento click en el boton de promos desencadena la siguiente funcion ("onclick" se encuentra en el html)
+function pedidoFetch(){
+    fetch(`${promos}`)
+    .then((res) => res.json())
+    .then((res) => mostrarPromos(res))
+    .catch((error) => console.log(error));
+}
 
 function borrarBtn(){
     document.getElementById("btnPromos").style.display = "none";
 }
 
 function mostrarPromos(promociones){
+    console.log(promociones);
     borrarBtn()
     for (let i = 0; i < promociones.length; i++){
         $("#contenedorPromos").prepend(`<div><h2>${promociones[i].titulo}</h2><p>${promociones[i].descripcion}</p></div>`)
     }
-}
-
-
-//el evento click en el boton de promos desencadena la siguiente funcion (se encuentra en el html)
-function pedidoFetch(){
-    fetch(`${promos}`)
-    .then((res) => res.json())
-    .then((res) => mostrarPromos(res))
-    .catch((error) => console.log(error));
 }
 
 // seccion para ver los turnos reservados 
@@ -165,11 +242,42 @@ function traerTurnos(){
     }
 }
 
-document.addEventListener("DOMContentLoaded", ()=>{
-    traerTurnos()
-}
-)
+document.addEventListener("DOMContentLoaded", traerTurnos)
 
+// generador de workouts
+let wod = "wods.json"
+let contenidoWod = document.getElementById("entrenamientos");
+let mensajeWod = document.createElement("div");
+
+function pedidoWod(){
+    mensajeWod.innerHTML = ""
+    fetch(`${wod}`)
+    .then((res) => res.json())
+    .then((wod) => mostrarWod(wod))
+    .catch((error) => console.log(error));
+}
+
+function mostrarWod(wod){    
+    
+    let ordenWod = generateRandomInt(4)
+
+    mensajeWod.innerHTML = (`<h2>${wod[ordenWod].titulo}</h2>`)
+    
+    for (let i = 0; i < wod[ordenWod].descripcion.length; i++){        
+        mensajeWod.innerHTML += (`<p>${wod[ordenWod].descripcion[i]}</p>`);
+    }    
+
+    contenidoWod.appendChild(mensajeWod);
+        
+}
+
+function generateRandomInt(max){
+    return Math.floor(Math.random() * max);
+}
+
+document.addEventListener("DOMContentLoaded", pedidoWod)
+
+document.getElementById("btnWods").addEventListener("click", pedidoWod);
 
 
 

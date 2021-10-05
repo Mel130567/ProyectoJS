@@ -24,6 +24,11 @@ header {
   padding: 30px 10px; }
   #contenedorPromos p {
     margin: 0; }
+  #contenedorPromos #btnPromos {
+    transition: all 500ms ease-in-out; }
+    #contenedorPromos #btnPromos:hover {
+      background-color: black;
+      color: white; }
 
 body {
   font-family: 'Noto Sans HK', sans-serif;
@@ -59,25 +64,15 @@ body {
     #formularioDeTurnos .formulario .campo {
       width: 100%;
       margin: 10px 0px; }
-    #formularioDeTurnos .formulario button {
+    #formularioDeTurnos .formulario #btnConfirmar {
       margin-top: 20px; }
 
 .error {
   background-color: #f3d1d1;
   border: 3px solid #cc7373; }
 
-.animacion {
-  color: white;
-  font-size: 25px;
-  font-family: 'Bebas Neue', cursive;
-  text-align: center;
-  padding-top: 20px;
-  text-shadow: 2px 2px 2px #0A0A0A; }
-  .animacion a {
-    text-decoration: none;
-    color: white; }
-    .animacion a:hover {
-      color: #ec4141; }
+.requerido {
+  color: red; }
 
 .tablaTurnos {
   height: auto;
@@ -86,7 +81,31 @@ body {
   font-family: 'Bebas Neue', cursive;
   padding: 20px; }
   .tablaTurnos .turno {
-    background-color: #979797;
+    color: white;
+    background-color: rgba(37, 37, 37, 0.884);
     width: 250px;
     height: 250px;
     margin: 20px; }
+
+#workouts {
+  background-image: url(../img/fondo2.jpg);
+  background-position: center;
+  text-align: center;
+  color: white;
+  min-height: 40vh;
+  font-family: 'Bebas Neue', cursive; }
+  #workouts h3 {
+    padding: 20px 0px;
+    font-size: 35px;
+    text-shadow: 3px 3px 3px #979797; }
+  #workouts #btnWods {
+    margin-bottom: 20px;
+    transition: all 500ms ease-in-out; }
+    #workouts #btnWods:hover {
+      background-color: black;
+      color: white; }
+  #workouts #entrenamientos {
+    min-height: 250px; }
+    #workouts #entrenamientos p {
+      font-family: 'Noto Sans HK', sans-serif;
+      text-shadow: 3px 3px 3px #161616; }

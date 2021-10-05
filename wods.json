@@ -1,0 +1,22 @@
+[
+    {
+        "id" : 1 ,
+        "titulo" : " Por tiempo " ,
+        "descripcion" : [ " 50 SENTADILLAS DE AIRE " , " 40 DOBLES BAJO " , " 30 ESCALADORES DE MONTAÑA " , " 20 PUSH UPS " , " 10 BURPEES " ]
+    },
+    {
+        "id" : 2 ,
+        "titulo" : " 5 rondas " ,
+        "descripcion" : [ " Min 1: MAX BURPEES " , " Min 2: MAX BOX SALTOS " , " Min 3: MAX AIR SQUATS " , " Min 4: DESCANSO " ]
+    },
+    {
+        "id" : 3 ,
+        "titulo" : " AMRAP 20MIN " ,
+        "descripcion" : [ " 400M RUN " , " 20 SIT UPS " , " 15 PUSH UPS " , " 1O LUNGES " ]
+    },
+    {
+        "id" : 4 ,
+        "titulo" : " 50-40-30-20-10 " ,
+        "descripcion" : [ " DOBLE DEBAJO " , " PULL UPS " , " PUSH UPS " ]
+    }
+]

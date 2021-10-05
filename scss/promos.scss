@@ -7,5 +7,12 @@
     p{
         margin: 0;
     }
+    #btnPromos{
+        transition: all 500ms ease-in-out;
+        &:hover{
+            background-color: black;
+            color: white;;
+        }
+    }
 }
 

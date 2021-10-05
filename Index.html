@@ -27,12 +27,15 @@
                     <li class="nav-item">
                       <a class="nav-link text-white" href="#formularioDeTurnos">Clases</a>
                     </li>
+                    <li class="nav-item">
+                      <a class="nav-link text-white" href="#workouts">Wods</a>
+                    </li>
                   </ul>
                   </div>
             </nav>
         </header>
      </div>
-    <div id="contenedorServicios" class="container-fluid row justify-content-around align-items-center">
+    <div id="contenedorServicios" class="container-fluid px-0 mx-0 row justify-content-around align-items-center">
       <div class="card col-sm-12 col-md-3">
         <img src="img/pullup.jpg" class="card-img-top" alt="...">
         <div class="card-body">
@@ -57,9 +60,13 @@
     </div>
     <div id="formularioDeTurnos" class="d-flex flex-row justify-content-center align-items-center">
       <form class="formulario d-flex flex-column justify-content-center" method="POST" autocomplete="off">
+        <label for="nombreForm">Nombre <span class="requerido">*</span></label>
           <input id="nombreForm" class="campo" type="text"  name="nombre" placeholder="Nombre" >
+          <label for="apellidoForm">Apellido <span class="requerido">*</span></label>
           <input id="apellidoForm" class="campo" type="text" name="apellido" placeholder="Apellido" >
+          <label for="emailForm">Email <span class="requerido">*</span></label>
           <input id="emailForm" class="campo" type="email"  name="email" placeholder="Email" >
+          <label for="telForm">Telefono <span class="requerido">*</span></label>
           <input id="telForm" class="campo" type="tel"  name="telefono" placeholder="Telefono">
           <label class="campo">Seleciona una clase</label>
         <p>
@@ -70,29 +77,35 @@
           <input id="radioFun" type="radio" name="opcion" value="Funcional">
           <label>Funcional</label>
         </p>
-        <label for="fecha">Fecha:</label>
+        <label for="fecha">Fecha <span class="requerido">*</span></label>
         <p>
-          <input id="fechaForm" class="campo" type="date" id="fecha">
+          <input id="fechaForm" class="campo" type="date" name="fecha" min="2021-10-01">
         </p>
-        <label>Hora:</label>
-        <select id="horariosForm" class="campo" name="Horarios">
-          <option>-</option>
-          <option>8hs</option>
-          <option>10hs</option>
-          <option>12hs</option>
-          <option>14hs</option>
-          <option>16hs</option>
-          <option>18hs</option>
-          <option>20hs</option>
+        <label>Hora <span class="requerido">*</span></label>
+        <select id="horariosForm" class="campo" name="horarios">
+          <option value="0">-</option>
+          <option value="1">8hs</option>
+          <option value="2">10hs</option>
+          <option value="3">12hs</option>
+          <option value="4">14hs</option>
+          <option value="5">16hs</option>
+          <option value="6">18hs</option>
+          <option value="7">20hs</option>
         </select>
         <p>
-         <input id="btnConfirmar" type="submit" value="Confirmar Turno">
+         <input id="btnConfirmar" type="submit" value="Confirmar Turno" disabled>
         </p>
+        <p>(<span class="requerido">*</span>) Campo requerido</p>
       </form>
     </div>
     <div class="tablaTurnos">
       <h2>Turnos reservados</h2>
       <div id="turnosReservados" class="d-flex flex-row flex-wrap align-items-center"></div>
+    </div>
+    <div id="workouts">
+      <h3>¡Genera tu workout!</h3>
+      <div id="entrenamientos"></div>
+      <button id="btnWods">Conocer Wods</button>
     </div>
    <!-- Modal -->
     <div class="modal fade" id="turnoModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">

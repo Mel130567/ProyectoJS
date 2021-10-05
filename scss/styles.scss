@@ -39,7 +39,7 @@ body{
             width: 100%;
             margin: 10px 0px;
         }
-        button{
+        #btnConfirmar{
             margin-top: 20px;
         }
     }
@@ -49,22 +49,10 @@ body{
     background-color: #f3d1d1;
     border: 3px solid rgb(204, 115, 115);
 }
-
-.animacion{
-    color: white;
-    font-size: 25px;
-    font-family:'Bebas Neue', cursive;
-    text-align: center;
-    padding-top: 20px;
-    text-shadow: 2px 2px 2px #0A0A0A;
-    a{
-        text-decoration: none;
-        color: white;
-        &:hover{
-            color: #ec4141;
-        }
-    }
+.requerido{
+    color: red;
 }
+
 .tablaTurnos{
     height: auto;
     background-color:#ec4141;
@@ -72,9 +60,40 @@ body{
     font-family:'Bebas Neue', cursive;
     padding: 20px;
     .turno{
-        background-color: #979797;
+        color: white;
+        background-color: rgba(37, 37, 37, 0.884);
         width: 250px;
         height: 250px;
         margin: 20px;
     }
 }
+#workouts{
+    background-image: url(../img/fondo2.jpg);
+    background-position: center;
+    text-align: center;
+    color: white;
+    min-height: 40vh;
+    font-family:'Bebas Neue', cursive;
+    h3{
+        padding: 20px 0px;
+        font-size: 35px;
+        text-shadow: 3px 3px 3px #979797;
+    }
+    #btnWods{
+        margin-bottom: 20px;
+        transition: all 500ms ease-in-out;
+        &:hover{
+            background-color: black;
+            color: white;;
+        }
+    }
+    #entrenamientos{
+        min-height: 250px;
+        p{
+        font-family: 'Noto Sans HK', sans-serif;
+        text-shadow: 3px 3px 3px #161616;
+        }
+    }
+
+}
+
