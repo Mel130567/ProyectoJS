@@ -199,7 +199,7 @@ function recogerDatos(e){
 }
 
 //seccion que muestra las promos que se encuentran en un json
-const promos = "promos.json"
+const promos = "http://127.0.0.1:5500/promos.json"
 
 //el evento click en el boton de promos desencadena la siguiente funcion ("onclick" se encuentra en el html)
 function pedidoFetch(){
@@ -269,7 +269,7 @@ function borrarTurno(i){
 document.addEventListener("DOMContentLoaded", traerTurnos)
 
 // generador de workouts 
-let wod = "wods.json"
+let wod = "http://127.0.0.1:5500/wods.json"
 let contenidoWod = document.getElementById("entrenamientos");
 let mensajeWod = document.createElement("div");
 
